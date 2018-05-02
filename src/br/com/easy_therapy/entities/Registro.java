@@ -16,15 +16,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="pensamento")
+@Table(name="registro")
 @NamedQueries(
 		{
-			@NamedQuery(name=Pensamento.FINDBY_CLIENTE,
-				query="select p from pensamento as p where p.cliente= :c order by p.data")
+			@NamedQuery(name=Registro.FINDBY_CLIENTE,
+				query="select p from registro as p where p.cliente= :c order by p.data asc")
 		}
 	)
-public class Pensamento {
-	public static final String FINDBY_CLIENTE = "pensamento.findbycliente";
+public class Registro {
+	public static final String FINDBY_CLIENTE = "registro.findbycliente";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,7 +54,7 @@ public class Pensamento {
 	@Column(name = "resultado", length = 300, nullable = false)
 	private String resultado;
 	
-	public Pensamento(Integer id, Cliente cliente, Date data, String situacao,
+	public Registro(Integer id, Cliente cliente, Date data, String situacao,
 			String pensamentos_automaticos, String emocoes, String conclusao,
 			String resultado) {
 		super();

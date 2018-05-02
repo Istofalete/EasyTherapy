@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 @Table(name="cliente")
 @NamedQueries(
@@ -22,12 +23,18 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name=Cliente.FINDBY_PSICOLOGO,
 				query="select c from cliente as c where c.psicologo = :p order by c.nome"),
 			@NamedQuery(name=Cliente.FINDBY_NOME,
-				query="select c from cliente as c where c.nome like :cnome order by c.nome")
+				query="select c from cliente as c where c.nome like :cnome order by c.nome"),
+			@NamedQuery(name=Cliente.HAS_EMAIL,
+			query="select count(c) from Cliente as c where c.email = :c1"),
+			@NamedQuery(name=Cliente.HASEMAIL_SENHA,			
+			query = "select count(c) from Cliente as c where c.email = :cemail and c.senha = :csenha") 
 		}
 	)
 public class Cliente {
 	public static final String FINDBY_PSICOLOGO = "cliente.findbypsicologo";
 	public static final String FINDBY_NOME = "cliente.findbyname";
+	public static final String HAS_EMAIL = "cliente.hasemail";
+	public static final String HASEMAIL_SENHA = "cliente.hasemailsenha";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
