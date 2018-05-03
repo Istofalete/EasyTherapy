@@ -1,12 +1,19 @@
 package br.com.easy_therapy.persistence;
 
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import br.com.easy_therapy.entities.Cliente;
 
-public class DAOCliente {
+import br.com.easy_therapy.entities.Cliente;
+import br.com.easy_therapy.percistence.generics.DAOGeneric;
+
+public class DAOCliente extends DAOGeneric<Cliente, Integer>{
+
+	public DAOCliente() {
+		super(Cliente.class);
+	}
 
 	private Session session;
 	private Transaction transaction;
@@ -34,6 +41,31 @@ public class DAOCliente {
 		List<Cliente> lista = query.list();
 		session.close();
 		return lista;
+	}
+	
+	public boolean hasEmail(String email) throws Exception{
+		
+		session = HibernateUtil.getSessionFactory().openSession();
+		
+		query = session.getNamedQuery(Cliente.HAS_EMAIL);
+		query.setString("cemail", email);	
+		//verificar se email existe
+		Long qtd = (Long) query.uniqueResult();
+		
+		return qtd >0;
+	}
+	
+	public boolean emailSenha(String email, String senha) throws Exception{
+		
+		session = HibernateUtil.getSessionFactory().openSession();
+		
+		query = session.getNamedQuery(Cliente.HASEMAIL_SENHA);
+		query.setString("cemail", email);
+		query.setString("csenha",senha);
+		//verificar se email e senha existem
+		Long qtd = (Long) query.uniqueResult();
+		
+		return qtd >0;
 	}
 
 	public Cliente findById(Integer idCliente) throws Exception{
