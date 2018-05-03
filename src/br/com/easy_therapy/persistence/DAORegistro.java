@@ -4,38 +4,37 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import br.com.easy_therapy.entities.Pensamento;
-import br.com.easy_therapy.entities.Pensamento;
+import br.com.easy_therapy.entities.Registro;
 
-public class DAOPensamento {
+public class DAORegistro {
 	
 	private Session session;
 	private Transaction transaction;
 	private Query query;
 
-	public List<Pensamento> findByCliente(Integer cliente) throws Exception{
+	public List<Registro> findByCliente(Integer cliente) throws Exception{
 
 		session = HibernateUtil.getSessionFactory().openSession();
 
-		query = session.getNamedQuery(Pensamento.FINDBY_CLIENTE);
+		query = session.getNamedQuery(Registro.FINDBY_CLIENTE);
 		query.setLong("c", cliente);
 
-		List<Pensamento> lista = query.list();
+		List<Registro> lista = query.list();
 		session.close();
 		return lista;
 	}
 	
-	public Pensamento findById(Integer idPensamento) throws Exception{
+	public Registro findById(Integer idRegistro) throws Exception{
 
 		session = HibernateUtil.getSessionFactory().openSession();
 
-		Pensamento f = (Pensamento) session.get(Pensamento.class, idPensamento);
+		Registro f = (Registro) session.get(Registro.class, idRegistro);
 		session.close();
 		
 		return f;
 	}
 
-	public void insert(Pensamento c) throws Exception {
+	public void insert(Registro c) throws Exception {
 
 		session = HibernateUtil.getSessionFactory().openSession();transaction = session.beginTransaction();
 		session.save(c);
@@ -44,7 +43,7 @@ public class DAOPensamento {
 		session.close();
 	}
 
-	public void update(Pensamento c) throws Exception {
+	public void update(Registro c) throws Exception {
 
 		session = HibernateUtil.getSessionFactory().openSession();
 		transaction = session.beginTransaction();
@@ -54,7 +53,7 @@ public class DAOPensamento {
 		session.close();
 	}
 
-	public void delete(Pensamento c) throws Exception {
+	public void delete(Registro c) throws Exception {
 
 		session = HibernateUtil.getSessionFactory().openSession();
 		transaction = session.beginTransaction();
