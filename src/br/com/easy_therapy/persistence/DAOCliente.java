@@ -68,42 +68,5 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		return qtd >0;
 	}
 
-	public Cliente findById(Integer idCliente) throws Exception{
-
-		session = HibernateUtil.getSessionFactory().openSession();
-
-		Cliente f = (Cliente) session.get(Cliente.class, idCliente);
-		session.close();
-		
-		return f;
-	}
-
-	public void insert(Cliente c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();transaction = session.beginTransaction();
-		session.save(c);
-		transaction.commit();
-
-		session.close();
-	}
-
-	public void update(Cliente c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();
-		transaction = session.beginTransaction();
-		session.update(c); 
-		transaction.commit(); 
-
-		session.close();
-	}
-
-	public void delete(Cliente c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();
-		transaction = session.beginTransaction();
-		session.delete(c);
-		transaction.commit();
-
-		session.close();
-	}
+	
 }

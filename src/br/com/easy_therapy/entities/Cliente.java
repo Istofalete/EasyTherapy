@@ -54,24 +54,28 @@ public class Cliente {
 	private Integer idade;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id")
-	private Psicologo crp_psicologo;
+	@JoinColumn(name="crp", nullable = false)
+	private Psicologo psicologo;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column (name = "data_ultimo_registro")
 	private Date data_ultimo_registro;
 
+	public Cliente() {
+		super();
+	}
 	public Cliente(Integer id, String email, String senha, String nome,
-			Integer idade, Psicologo crp_psicologo, Date data_ultimo_registro) {
+			Integer idade, Psicologo psicologo, Date data_ultimo_registro) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
 		this.nome = nome;
 		this.idade = idade;
-		this.crp_psicologo = crp_psicologo;
+		this.psicologo = psicologo;
 		this.data_ultimo_registro = data_ultimo_registro;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -102,11 +106,11 @@ public class Cliente {
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
-	public Psicologo getCrp_psicologo() {
-		return crp_psicologo;
+	public Psicologo getPsicologo() {
+		return psicologo;
 	}
-	public void setCrp_psicologo(Psicologo crp_psicologo) {
-		this.crp_psicologo = crp_psicologo;
+	public void setPsicologo(Psicologo psicologo) {
+		this.psicologo = psicologo;
 	}
 	public Date getData_ultimo_registro() {
 		return data_ultimo_registro;

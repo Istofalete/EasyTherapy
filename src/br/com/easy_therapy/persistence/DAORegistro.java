@@ -31,42 +31,5 @@ public class DAORegistro extends DAOGeneric<Registro, Integer> {
 		return lista;
 	}
 	
-	public Registro findById(Integer idRegistro) throws Exception{
-
-		session = HibernateUtil.getSessionFactory().openSession();
-
-		Registro f = (Registro) session.get(Registro.class, idRegistro);
-		session.close();
-		
-		return f;
-	}
-
-	public void insert(Registro c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();transaction = session.beginTransaction();
-		session.save(c);
-		transaction.commit();
-
-		session.close();
-	}
-
-	public void update(Registro c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();
-		transaction = session.beginTransaction();
-		session.update(c); 
-		transaction.commit(); 
-
-		session.close();
-	}
-
-	public void delete(Registro c) throws Exception {
-
-		session = HibernateUtil.getSessionFactory().openSession();
-		transaction = session.beginTransaction();
-		session.delete(c);
-		transaction.commit();
-
-		session.close();
-	}
+	
 }

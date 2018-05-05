@@ -30,8 +30,8 @@ public class Psicologo {
 	public static final String HASCRP_SENHA = "psicologo.hascrpsenha";
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="crp")
+	@GeneratedValue()
+	@Column(name="crp", nullable = false)
 	private Integer crp;
 
 	@Column(name = "senha", length = 20, nullable = false)
@@ -41,7 +41,7 @@ public class Psicologo {
 	private String nome;
 	
 	@OneToMany(mappedBy="psicologo")
-	@Column(name="clientes")
+	@Column(name="cliente")
 		private List<Cliente> clientes;
 		
 
@@ -50,6 +50,9 @@ public class Psicologo {
 		this.crp = crp;
 		this.senha = senha;
 		this.nome = nome;
+	}
+	public Psicologo() {
+		super();
 	}
 	public Integer getCrp() {
 		return crp;
