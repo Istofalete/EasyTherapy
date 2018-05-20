@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TerapEasy</title>
 
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="../css/styles.css">
+<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="../../css/styles.css">
 </head>
 <body>
 	<div class="container">
@@ -30,6 +30,9 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<button type="submit" class="btn btn-default" onclick="pesquisar()">Pesquisar</button>
+							<a href="cadastroPensamento.jsp">
+								<button type="button" class="btn btn-info">Novo Registro de Pensamento</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -66,7 +69,9 @@
 			<div class="panel-footer">
 				<div class="row">
 					<div class="col-sm-12">
-						<button type="submit" class="btn btn-default" onclick="visualizar()">Visualizar</button>
+						<a href="ControleRegistro?action=editar&idRegistro=${r.id}">
+							<button type="submit" class="btn btn-default" onclick="visualizar()">Visualizar</button>
+						</a>
 						<button type="submit" class="btn btn-default" onclick="excluir()">Excluir</button>
 					</div>
 				</div>

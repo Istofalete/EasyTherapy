@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.easy_therapy.entities.Registro;
-import br.com.easy_therapy.percistence.generics.DAOGeneric;
+import br.com.easy_therapy.persistence.generics.DAOGeneric;
 
 public class DAORegistro extends DAOGeneric<Registro, Integer> {
 	

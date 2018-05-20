@@ -1,5 +1,5 @@
 package br.com.easy_therapy.util;
-/*
+
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -17,4 +17,4 @@ public class GenerateTables {
 			System.out.println(e.getMessage());
 		}
 	}
-}*/
+}

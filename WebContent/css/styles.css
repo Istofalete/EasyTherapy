@@ -4,3 +4,13 @@ th, td {
     text-align: center;
     vertical-align: middle;
 }
+.btn-orange {
+  color: white;
+  background-color: #ffa31a;
+  border-color: #ffd699;
+}
+.btn-blue {
+  color: white;
+  background-color: #0066cc;
+  border-color: #0073e6;
+}

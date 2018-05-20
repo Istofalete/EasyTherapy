@@ -67,6 +67,9 @@ public class Registro {
 		this.conclusao = conclusao;
 		this.resultado = resultado;
 	}
+	public Registro() {
+		super();
+	}
 
 	public Integer getId() {
 		return id;

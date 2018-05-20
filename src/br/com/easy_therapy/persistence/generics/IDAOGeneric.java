@@ -1,4 +1,4 @@
-package br.com.easy_therapy.percistence.generics;
+package br.com.easy_therapy.persistence.generics;
 
 import java.io.Serializable;
 import java.util.List;
