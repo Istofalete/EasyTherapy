@@ -1269,14 +1269,22 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  font-family: 'Fira Sans', sans serif;
+  font-weight:bold; 
+  color: #ff8900;
 }
 h3,
 .h3 {
   font-size: 24px;
+  font-family: 'Fira Sans', sans serif;
+  font-weight:normal; 
+  color: #ff8900;
 }
 h4,
 .h4 {
   font-size: 18px;
+  font-family: 'Fira Sans', sans serif;
+  color: #ff8900;
 }
 h5,
 .h5 {
@@ -3229,25 +3237,25 @@ fieldset[disabled] .btn-success.focus {
 }
 .btn-info {
   color: #fff;
-  background-color: #5bc0de;
+  background-color: #ffb800;
   border-color: #46b8da;
 }
 .btn-info:focus,
 .btn-info.focus {
   color: #fff;
-  background-color: #31b0d5;
+  background-color:  #ffb800;
   border-color: #1b6d85;
 }
 .btn-info:hover {
   color: #fff;
-  background-color: #31b0d5;
+  background-color:  #ffb800;
   border-color: #269abc;
 }
 .btn-info:active,
 .btn-info.active,
 .open > .dropdown-toggle.btn-info {
   color: #fff;
-  background-color: #31b0d5;
+  background-color:  #ffb800;
   border-color: #269abc;
 }
 .btn-info:active:hover,
@@ -3260,7 +3268,7 @@ fieldset[disabled] .btn-success.focus {
 .btn-info.active.focus,
 .open > .dropdown-toggle.btn-info.focus {
   color: #fff;
-  background-color: #269abc;
+  background-color:  #ffb800;
   border-color: #1b6d85;
 }
 .btn-info:active,
@@ -3281,7 +3289,7 @@ fieldset[disabled] .btn-info.focus {
   border-color: #46b8da;
 }
 .btn-info .badge {
-  color: #5bc0de;
+  color:  #ffb800;
   background-color: #fff;
 }
 .btn-warning {
@@ -4979,9 +4987,11 @@ a.badge:focus {
   padding-right: 15px;
   padding-left: 15px;
   border-radius: 6px;
+  
 }
 .jumbotron .container {
   max-width: 100%;
+   color: #1729B0;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
@@ -4992,6 +5002,7 @@ a.badge:focus {
   .container-fluid .jumbotron {
     padding-right: 60px;
     padding-left: 60px;
+     color: #1729B0;
   }
   .jumbotron h1,
   .jumbotron .h1 {

@@ -39,7 +39,7 @@ public class ControleRegistro {
 
 				Registro r = new Registro();
 
-				r.setCliente(1);
+				//r.setCliente(1);
 				r.setData(new Date());
 				r.setSituacao(situacao);
 				r.setPensamentos_automaticos(pensamentosAutomaticos);
@@ -89,7 +89,7 @@ public class ControleRegistro {
 				Registro r = new Registro();
 
 				r.setId(id);
-				r.setCliente(1);
+				//r.setCliente(1);
 				r.setData(new Date());
 				r.setSituacao(situacao);
 				r.setPensamentos_automaticos(pensamentosAutomaticos);
