@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hamcrest.text.IsEmptyString;
+
 import br.com.easy_therapy.entities.Cliente;
 import br.com.easy_therapy.entities.Psicologo;
 import br.com.easy_therapy.persistence.DAOCliente;
@@ -35,14 +37,13 @@ public class ControleCliente extends HttpServlet{
 				String senhaconfirm = request.getParameter("senhaconfirm");
 				String email = request.getParameter("email");
 				
-				int crp = Integer.parseInt(request.getParameter("crp"));
+				int idpsicologo = Integer.parseInt(request.getParameter("idpsicologo"));
 				
 				if (senha.equals(senhaconfirm)) {						
 					if(!d.hasEmail(email)) { 						
-				
-						if (DaoP.hasCRP(String.valueOf(crp))) {
-						
-							Psicologo p = DaoP.findById(crp);
+						Psicologo p = new Psicologo();
+						p= DaoP.findById(idpsicologo);//hasPsicologo
+						if (!p.getId().equals(null)) {						
 						
 							Cliente c = new Cliente();					
 						
@@ -57,7 +58,7 @@ public class ControleCliente extends HttpServlet{
 								request.setAttribute("mensagem", "Cadastro realizado com sucesso, seja bem vindo!");
 						}
 						else
-							request.setAttribute("mensagem", "Verifique o CRP do seu Psicólogo");
+							request.setAttribute("mensagem", "Verifique CÓDIGO do seu Psicólogo");
 					}				
 					else
 						request.setAttribute("mensagem", "Email já cadastrado, você mudou de Psicólogo/Terapeuta?");
@@ -83,7 +84,7 @@ public class ControleCliente extends HttpServlet{
 				if(d.hasEmail(email)) {
 					String senha = Criptografia.encriptarSenha(request.getParameter("senha"));
 					
-					if(d.emailSenha(email, senha)) {
+					if(d.hasEmailSenha(email, senha)) {
 						
 						HttpSession session = request.getSession();
 						session.setAttribute("logon", c);
@@ -153,11 +154,11 @@ public class ControleCliente extends HttpServlet{
 				
 				if (senha.equals(senhaconfirm)) {						
 					DAOPsicologo DaoP = new DAOPsicologo();
-					int crp = Integer.parseInt(request.getParameter("crp"));
+					int idpsicologo = Integer.parseInt(request.getParameter("idpsicologo"));
 					
-					if (DaoP.hasCRP(String.valueOf(crp))) {
+					if (!DaoP.findById(idpsicologo).equals(null) || !DaoP.findById(idpsicologo).equals("") ) {
 						
-						Psicologo p = DaoP.findById(crp);
+						Psicologo p = DaoP.findById(idpsicologo);
 						DAOCliente d = new DAOCliente();
 						Cliente c = new Cliente();
 					
@@ -172,7 +173,7 @@ public class ControleCliente extends HttpServlet{
 							request.setAttribute("mensagem", "Alteração realizada com sucesso!");
 					}
 					else
-						request.setAttribute("mensagem", "Verifique o CRP do seu Psicólogo");
+						request.setAttribute("mensagem", "Verifique o CÓDIGO do seu Psicólogo");
 				}
 				else
 					request.setAttribute("mensagem", "Verifique se você digitou as senhas corretamente");

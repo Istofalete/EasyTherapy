@@ -15,9 +15,6 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		super(Cliente.class);
 	}
 
-	private Session session;
-	private Transaction transaction;
-	private Query query;
 
 	public List<Cliente> findByPsicologo(Integer psicologo) throws Exception{
 
@@ -26,6 +23,7 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		query = session.getNamedQuery(Cliente.FINDBY_PSICOLOGO);
 		query.setLong("p", psicologo);
 
+		@SuppressWarnings("unchecked")
 		List<Cliente> lista = query.list();
 		session.close();
 		return lista;
@@ -36,8 +34,9 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		session = HibernateUtil.getSessionFactory().openSession();
 
 		query = session.getNamedQuery(Cliente.FINDBY_NOME);
-		query.setString("cnome", "%"+nome+"%");
+		query.setString("c1", "%"+nome+"%");
 
+		@SuppressWarnings("unchecked")
 		List<Cliente> lista = query.list();
 		session.close();
 		return lista;
@@ -48,14 +47,14 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		session = HibernateUtil.getSessionFactory().openSession();
 		
 		query = session.getNamedQuery(Cliente.HAS_EMAIL);
-		query.setString("cemail", email);	
+		query.setString("c1", email);	
 		//verificar se email existe
 		Long qtd = (Long) query.uniqueResult();
-		
+		session.close();
 		return qtd >0;
 	}
 	
-	public boolean emailSenha(String email, String senha) throws Exception{
+	public boolean hasEmailSenha(String email, String senha) throws Exception{
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -64,7 +63,7 @@ public class DAOCliente extends DAOGeneric<Cliente, Integer>{
 		query.setString("csenha",senha);
 		//verificar se email e senha existem
 		Long qtd = (Long) query.uniqueResult();
-		
+		session.close();
 		return qtd >0;
 	}
 

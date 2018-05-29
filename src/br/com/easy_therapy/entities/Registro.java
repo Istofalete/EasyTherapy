@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @NamedQueries(
 		{
 			@NamedQuery(name=Registro.FINDBY_CLIENTE,
-				query="select p from registro as p where p.cliente= :c order by p.data asc")
+				query="select r from Registro as r where r.cliente like :cli order by r.data ")
 		}
 	)
 public class Registro {
@@ -28,11 +28,11 @@ public class Registro {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name="id",insertable = false, updatable = false, nullable = false)
 	private Integer id;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id")
+	@JoinColumn(name="idcliente")
 	private Cliente cliente;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -57,7 +57,7 @@ public class Registro {
 	public Registro(Integer id, Cliente cliente, Date data, String situacao,
 			String pensamentos_automaticos, String emocoes, String conclusao,
 			String resultado) {
-		super();
+		
 		this.id = id;
 		this.cliente = cliente;
 		this.data = data;
@@ -68,7 +68,7 @@ public class Registro {
 		this.resultado = resultado;
 	}
 	public Registro() {
-		super();
+		
 	}
 
 	public Integer getId() {

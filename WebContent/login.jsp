@@ -203,17 +203,14 @@
 					<form id="cadastropsicologo" name="cadastropsicologo" method="post"
 						action="ControlePsicologo?acao=cadastrar">
 
-						<label>CRP:</label> <input type="text" name="ra"
+						<label>CRP:</label> <input type="text" name="crp"
 							class="form-control" placeholder="Digite aqui"
 							required="required" /> <br /> <label>Informe seu nome:</label>
 						<input type="text" name="nome" class="form-control"
 							placeholder="Digite aqui" required="required" /> <br /> 
 							<label>Email:</label>
 						<input type="text" name="email" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> 
-							<label>Login:</label>
-						<input type="text" name="login" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> 
+							placeholder="Digite aqui" required="required" /> <br /> 							
 							<label>Senha:</label>
 						<input type="password" name="senha" class="form-control"
 							placeholder="Digite aqui" required="required" /> <br /> 
@@ -221,8 +218,6 @@
 							class="form-control" placeholder="Digite aqui"
 							required="required" /> <br /> <input type="submit"
 							value="Confirmar" class="btn btn-success" />
-
-
 					</form>
 				</div>
 			</div>
@@ -250,18 +245,19 @@
 						action="ControleCliente?acao=cadastrar">
 
 						<label>Insira aqui o código fornecido pelo seu psicólogo:</label>
-						<input type="text" name="email" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> <label>Nome:</label>
+						<input type="text" name="idpsicologo" class="form-control"
+							placeholder="Digite aqui" required="required" /> <br /> 
+							<label>Nome:</label>
 						<input type="text" name="nome" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> <label>Email:</label>
+							placeholder="Digite aqui" required="required" /> <br /> 
+							<label>Email:</label>
 						<input type="text" name="email" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> <label>Login:</label>
-						<input type="text" name="login" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> <label>Senha:</label>
+							placeholder="Digite aqui" required="required" /> <br /> 
+						<label>Senha:</label>
 						<input type="password" name="senha" class="form-control"
-							placeholder="Digite aqui" required="required" /> <br /> <label>Confirme
-							a senha:</label> <input type="password" name="senhaconfirm"
-							class="form-control" placeholder="Digite aqui"
+							placeholder="Digite aqui" required="required" /> <br /> 
+						<label>Confirme	a senha:</label> 
+						<input type="password" name="senhaconfirm" class="form-control" placeholder="Digite aqui"
 							required="required" /> <br /> <input type="submit"
 							value="Confirmar" class="btn btn-success" />
 

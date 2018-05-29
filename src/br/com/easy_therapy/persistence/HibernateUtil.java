@@ -10,7 +10,7 @@ public class HibernateUtil {
 	static {
 		try {
 			sessionFactory = new AnnotationConfiguration()
-					.configure("br/com/easy_therapy/config/postgres_hibernate.cfg.xml")
+					.configure("br/com/easy_therapy/config/mysql_hibernate.cfg.xml")
 					.buildSessionFactory();
 		} catch (Throwable ex) {
 			throw new ExceptionInInitializerError(ex);

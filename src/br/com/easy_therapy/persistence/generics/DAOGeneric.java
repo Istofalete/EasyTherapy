@@ -10,8 +10,7 @@ import org.hibernate.Transaction;
 import br.com.easy_therapy.persistence.HibernateUtil;
 
 public abstract class DAOGeneric<T,K extends Serializable > implements IDAOGeneric<T, K > {
-	
-	
+		
 	
 	protected Session session;
 	protected Transaction transaction;

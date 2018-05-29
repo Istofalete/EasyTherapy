@@ -1,25 +1,32 @@
 package br.com.easy_therapy.control;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import br.com.easy_therapy.entities.Psicologo;
 import br.com.easy_therapy.persistence.DAOPsicologo;
 import br.com.easy_therapy.util.Criptografia;
 
+/**
+ * Servlet implementation class ControlePsicologo
+ */
 @WebServlet("/ControlePsicologo")
-public class ControlePsicologo {
+public class ControlePsicologo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ControlePsicologo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public ControlePsicologo() {
-		super();
-	}
 
 	protected void execute (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String action = request.getParameter("acao");
@@ -29,20 +36,19 @@ public class ControlePsicologo {
 				DAOPsicologo d = new DAOPsicologo();
 
 				String senha = request.getParameter("senha");
-				String senhaconfirm = request.getParameter("senhaconfirm");
-
-				int crp = Integer.parseInt(request.getParameter("crp"));
+				String senhaconfirm = request.getParameter("senhaconfirm");				
 
 				if (senha.equals(senhaconfirm)) {									
 
-					if (!d.hasCRP(String.valueOf(crp))) {
+					if (!d.hasCRP(request.getParameter("crp"))) {
 
 						Psicologo p = new Psicologo();
-
+						int crp = Integer.parseInt(request.getParameter("crp"));
+						
 						p.setCrp(crp);
 						p.setSenha(Criptografia.encriptarSenha(senha));
 						p.setNome(request.getParameter("nome"));					
-
+					
 						d.insert(p);
 
 						request.setAttribute("mensagem", "Cadastro realizado com sucesso, seja bem vindo!");
@@ -55,7 +61,8 @@ public class ControlePsicologo {
 
 			}
 			catch(Exception e) {
-				request.setAttribute("Erro", e.getMessage());
+				e.printStackTrace();
+				request.setAttribute("mensagem", e.getMessage());
 			}
 			finally {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -65,18 +72,36 @@ public class ControlePsicologo {
 		else if ("login".equalsIgnoreCase(action)){
 			try {
 				String crp = request.getParameter("crp");
+				String senha = Criptografia.encriptarSenha(request.getParameter("senha"));
 				DAOPsicologo d = new DAOPsicologo();
 				Psicologo p = new Psicologo();
-
-				if(d.hasCRP(crp)) {
-					String senha = Criptografia.encriptarSenha(request.getParameter("senha"));
+				
+               //***********************************MOCK
+/*
+				String senha = request.getParameter("senha");
+				if(crp.equals("123456") && senha.equals("123456")) {
+					//HttpSession session = request.getSession();
+					//session.setAttribute("logon", p);
+					
+					request.getRequestDispatcher("area-restrita/AreaPsicologo/listaClientes.jsp").forward(request, response);
+				
+				}
+				else {
+					
+					throw new Exception("CRP ou senha incorretos.");		 
+					
+				}	
+				
+				
+				 //*********************************** end MOCK
+				*/if(d.hasCRP(crp)) {
 
 					if(d.hasCrpSenha(crp, senha)) {
 
 						HttpSession session = request.getSession();
 						session.setAttribute("logon", p);
 
-						request.getRequestDispatcher("area-restrita/listaClientes.jsp").forward(request, response);
+						request.getRequestDispatcher("area-restrita/AreaPsicologo/listaClientes.jsp").forward(request, response);
 					}
 					else
 					{
@@ -85,7 +110,7 @@ public class ControlePsicologo {
 				}
 				else 
 				{
-					request.setAttribute("mensagem","Usuário inexistente.");
+					request.setAttribute("mensagem","CRP inexistente.");
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 
 				}
@@ -94,8 +119,11 @@ public class ControlePsicologo {
 			{
 				e.printStackTrace();
 				request.setAttribute("mensagem",e.getMessage());
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				request.setAttribute("mensagem","");
+				
+			}			
+			
 		}
 		else if("logoff".equalsIgnoreCase(action)){
 
@@ -160,7 +188,7 @@ public class ControlePsicologo {
 
 			}
 			catch(Exception e) {
-				request.setAttribute("Erro", e.getMessage());
+				request.setAttribute("mensagem", e.getMessage());
 			}
 			finally {
 				request.getRequestDispatcher("CONFIGURACAO.jsp").forward(request, response);

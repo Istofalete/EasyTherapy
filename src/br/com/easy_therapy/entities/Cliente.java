@@ -1,29 +1,30 @@
 package br.com.easy_therapy.entities;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+import org.hibernate.annotations.*;
 @Entity
 @Table(name="cliente")
 @NamedQueries(
 		{
 			@NamedQuery(name=Cliente.FINDBY_PSICOLOGO,
-				query="select c from cliente as c where c.psicologo = :p order by c.nome"),
+				query="select c from Cliente as c where c.psicologo = :p order by c.nome"),
 			@NamedQuery(name=Cliente.FINDBY_NOME,
-				query="select c from cliente as c where c.nome like :cnome order by c.nome"),
+				query="select c from Cliente as c where c.nome like :c1 order by c.nome"),
 			@NamedQuery(name=Cliente.HAS_EMAIL,
 			query="select count(c) from Cliente as c where c.email = :c1"),
 			@NamedQuery(name=Cliente.HASEMAIL_SENHA,			
@@ -37,14 +38,14 @@ public class Cliente {
 	public static final String HASEMAIL_SENHA = "cliente.hasemailsenha";
 
 	@Id
+	@Column(name = "id",insertable = false, updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private Integer id;
 
 	@Column(name = "email", length = 50, nullable = false, unique = true)
 	private String email;
 
-	@Column(name = "senha", length = 20, nullable = false)
+	@Column(name = "senha", length = 32, nullable = false)
 	private String senha;
 
 	@Column(name = "nome", length = 100, nullable = false)
@@ -54,26 +55,26 @@ public class Cliente {
 	private Integer idade;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="crp", nullable = false)
+	@JoinColumn(name="idpsicologo", nullable = false)
 	private Psicologo psicologo;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column (name = "data_ultimo_registro")
-	private Date data_ultimo_registro;
+	@OneToMany(mappedBy="cliente")
+	@Column(name="registro")
+		private List<Registro> registro;
 
 	public Cliente() {
-		super();
+		
 	}
 	public Cliente(Integer id, String email, String senha, String nome,
 			Integer idade, Psicologo psicologo, Date data_ultimo_registro) {
-		super();
+		
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
 		this.nome = nome;
 		this.idade = idade;
 		this.psicologo = psicologo;
-		this.data_ultimo_registro = data_ultimo_registro;
+		
 	}
 	
 	public Integer getId() {
@@ -112,12 +113,6 @@ public class Cliente {
 	public void setPsicologo(Psicologo psicologo) {
 		this.psicologo = psicologo;
 	}
-	public Date getData_ultimo_registro() {
-		return data_ultimo_registro;
-	}
-	public void setData_ultimo_registro(Date data_ultimo_registro) {
-		this.data_ultimo_registro = data_ultimo_registro;
-	}
-
+	
 }
 

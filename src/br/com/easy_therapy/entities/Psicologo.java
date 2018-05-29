@@ -16,25 +16,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name="psicologo")
 @NamedQueries(
-		{
+		{	
 			@NamedQuery(name=Psicologo.HAS_CRP,
 			query="select count(p) from Psicologo as p where p.crp = :p1"),
 			@NamedQuery(name=Psicologo.HASCRP_SENHA,			
-			query = "select count(p) from Psicologo as p where p.crp = :pcrp and p.senha = :psenha") 
+			query = "select count(p) from Psicologo as p where p.crp = :pcrp and p.senha = :psenha"), 
+			@NamedQuery(name=Psicologo.FINDBY_ID,
+			query="select count(p) from Psicologo as p where p.id = :p1"),
 		}
 	)
 
 public class Psicologo {
-	
 	public static final String HAS_CRP = "psicologo.hascrp";
 	public static final String HASCRP_SENHA = "psicologo.hascrpsenha";
+	public static final String FINDBY_ID = "psicologo.findbyid";
 	
 	@Id
-	@GeneratedValue()
-	@Column(name="crp", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id",  nullable = false)
+	private Integer id;
+	
+	@Column(name="crp", nullable = false, unique = true)
 	private Integer crp;
 
-	@Column(name = "senha", length = 20, nullable = false)
+	@Column(name = "senha", length = 32 , nullable = false)
 	private String senha;
 	
 	@Column(name = "nome", length = 100, nullable = false)
@@ -46,13 +51,19 @@ public class Psicologo {
 		
 
 	public Psicologo(Integer crp, String senha, String nome) {
-		super();
+		
 		this.crp = crp;
 		this.senha = senha;
 		this.nome = nome;
 	}
 	public Psicologo() {
-		super();
+		
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getCrp() {
 		return crp;
