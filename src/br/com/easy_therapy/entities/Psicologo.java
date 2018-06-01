@@ -23,6 +23,9 @@ import javax.persistence.Table;
 			query = "select count(p) from Psicologo as p where p.crp = :pcrp and p.senha = :psenha"), 
 			@NamedQuery(name=Psicologo.FINDBY_ID,
 			query="select count(p) from Psicologo as p where p.id = :p1"),
+			@NamedQuery(name=Psicologo.HAS_ID,
+			query="select count(p) from Psicologo as p where p.id = :p1"),
+			
 		}
 	)
 
@@ -30,6 +33,7 @@ public class Psicologo {
 	public static final String HAS_CRP = "psicologo.hascrp";
 	public static final String HASCRP_SENHA = "psicologo.hascrpsenha";
 	public static final String FINDBY_ID = "psicologo.findbyid";
+	public static final String HAS_ID = "psicologo.hasid";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,17 +52,28 @@ public class Psicologo {
 	@OneToMany(mappedBy="psicologo")
 	@Column(name="cliente")
 		private List<Cliente> clientes;
-		
-
-	public Psicologo(Integer crp, String senha, String nome) {
-		
-		this.crp = crp;
-		this.senha = senha;
-		this.nome = nome;
-	}
+	
 	public Psicologo() {
 		
 	}
+
+	public Psicologo(Integer id, Integer crp, String senha, String nome, List<Cliente> clientes) {
+		super();
+		this.id = id;
+		this.crp = crp;
+		this.senha = senha;
+		this.nome = nome;
+		this.clientes = clientes;
+	}
+	
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
 	public Integer getId() {
 		return id;
 	}

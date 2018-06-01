@@ -74,27 +74,9 @@ public class ControlePsicologo extends HttpServlet {
 				String crp = request.getParameter("crp");
 				String senha = Criptografia.encriptarSenha(request.getParameter("senha"));
 				DAOPsicologo d = new DAOPsicologo();
-				Psicologo p = new Psicologo();
-				
-               //***********************************MOCK
-/*
-				String senha = request.getParameter("senha");
-				if(crp.equals("123456") && senha.equals("123456")) {
-					//HttpSession session = request.getSession();
-					//session.setAttribute("logon", p);
-					
-					request.getRequestDispatcher("area-restrita/AreaPsicologo/listaClientes.jsp").forward(request, response);
-				
-				}
-				else {
-					
-					throw new Exception("CRP ou senha incorretos.");		 
-					
-				}	
-				
-				
-				 //*********************************** end MOCK
-				*/if(d.hasCRP(crp)) {
+				Psicologo p = new Psicologo();			
+              
+				if(d.hasCRP(crp)) {
 
 					if(d.hasCrpSenha(crp, senha)) {
 

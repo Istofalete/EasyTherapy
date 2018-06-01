@@ -28,17 +28,17 @@ public class DAOPsicologo extends DAOGeneric<Psicologo, Integer> {
 		query = session.getNamedQuery(Psicologo.HASCRP_SENHA);
 		query.setString("pcrp", crp);
 		query.setString("psenha",senha);
-		Long qtd = (Long) query.uniqueResult();
+		Long qtd = (Long) query.uniqueResult();	
 		session.close();
 		return qtd >0;
 	}	
 	
-	public boolean hasID(String id) throws Exception{
+	public boolean hasID(Integer id) throws Exception{
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
 		query = session.getNamedQuery(Psicologo.FINDBY_ID);
-		query.setString("p1", id);	
+		query.setInteger("p1", id);	
 		Long qtd = (Long) query.uniqueResult();
 		session.close();
 		return qtd >0;

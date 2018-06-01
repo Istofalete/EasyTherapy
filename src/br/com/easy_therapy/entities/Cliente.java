@@ -29,6 +29,7 @@ import org.hibernate.annotations.*;
 			query="select count(c) from Cliente as c where c.email = :c1"),
 			@NamedQuery(name=Cliente.HASEMAIL_SENHA,			
 			query = "select count(c) from Cliente as c where c.email = :cemail and c.senha = :csenha") 
+			
 		}
 	)
 public class Cliente {
@@ -61,21 +62,25 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente")
 	@Column(name="registro")
 		private List<Registro> registro;
-
+	
+	
 	public Cliente() {
 		
 	}
-	public Cliente(Integer id, String email, String senha, String nome,
-			Integer idade, Psicologo psicologo, Date data_ultimo_registro) {
-		
+	
+
+	public Cliente(Integer id, String email, String senha, String nome, Integer idade, Psicologo psicologo,
+			List<Registro> registro) {
+		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
 		this.nome = nome;
 		this.idade = idade;
 		this.psicologo = psicologo;
-		
+		this.registro = registro;
 	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -113,6 +118,11 @@ public class Cliente {
 	public void setPsicologo(Psicologo psicologo) {
 		this.psicologo = psicologo;
 	}
-	
+	public List<Registro> getRegistro() {
+		return registro;
+	}
+	public void setRegistro(List<Registro> registro) {
+		this.registro = registro;
+	}
 }
 

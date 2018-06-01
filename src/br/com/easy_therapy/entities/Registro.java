@@ -54,10 +54,10 @@ public class Registro {
 	@Column(name = "resultado", length = 300, nullable = false)
 	private String resultado;
 	
-	public Registro(Integer id, Cliente cliente, Date data, String situacao,
-			String pensamentos_automaticos, String emocoes, String conclusao,
-			String resultado) {
-		
+	
+	public Registro(Integer id, Cliente cliente, Date data, String situacao, String pensamentos_automaticos,
+			String emocoes, String conclusao, String resultado) {
+		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.data = data;
@@ -67,6 +67,7 @@ public class Registro {
 		this.conclusao = conclusao;
 		this.resultado = resultado;
 	}
+	
 	public Registro() {
 		
 	}

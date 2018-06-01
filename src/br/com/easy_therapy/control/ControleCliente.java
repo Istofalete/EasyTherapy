@@ -41,10 +41,11 @@ public class ControleCliente extends HttpServlet{
 				
 				if (senha.equals(senhaconfirm)) {						
 					if(!d.hasEmail(email)) { 						
-						Psicologo p = new Psicologo();
-						p= DaoP.findById(idpsicologo);//hasPsicologo
-						if (!p.getId().equals(null)) {						
 						
+						if (DaoP.hasID(idpsicologo)) {	
+							
+							Psicologo p = new Psicologo();
+							p= DaoP.findById(idpsicologo);
 							Cliente c = new Cliente();					
 						
 								c.setEmail(request.getParameter("email"));
@@ -68,6 +69,7 @@ public class ControleCliente extends HttpServlet{
 					
 			}
 			catch(Exception e) {
+				e.printStackTrace();
 				request.setAttribute("Erro", e.getMessage());
 			}
 			finally {
@@ -89,7 +91,7 @@ public class ControleCliente extends HttpServlet{
 						HttpSession session = request.getSession();
 						session.setAttribute("logon", c);
 						
-						request.getRequestDispatcher("area-restrita/listaPensamentos.jsp").forward(request, response);
+						request.getRequestDispatcher("area-restrita/RegistroPensamento/listaPensamentos.jsp").forward(request, response);
 					}
 					else{
 						throw new Exception("Senha incorreta.");

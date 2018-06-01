@@ -169,8 +169,8 @@
 				</div>
 				<div class="modal-body">
 					<form name="logincliente" id="formcliente" method="post"
-						action="ControleCliente?action=login">
-						<label>Email</label> <input type="text" name="login"
+						action="ControleCliente?acao=login">
+						<label>Email</label> <input type="text" name="email"
 							class="form-control" placeholder="Digite aqui"
 							required="required" /> <br /> <label>Senha</label> <input
 							type="password" name="senha" class="form-control"
@@ -249,6 +249,9 @@
 							placeholder="Digite aqui" required="required" /> <br /> 
 							<label>Nome:</label>
 						<input type="text" name="nome" class="form-control"
+							placeholder="Digite aqui" required="required" /> <br /> 
+							<label>Idade:</label>
+						<input type="text" name="idade" class="form-control"
 							placeholder="Digite aqui" required="required" /> <br /> 
 							<label>Email:</label>
 						<input type="text" name="email" class="form-control"
