@@ -102,7 +102,7 @@ public class ControlePsicologo extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("mensagem",e.getMessage());
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-				request.setAttribute("mensagem","");
+				
 				
 			}			
 			

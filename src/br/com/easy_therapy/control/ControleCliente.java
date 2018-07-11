@@ -106,7 +106,7 @@ public class ControleCliente extends HttpServlet{
 			catch (Exception e) {
 				e.printStackTrace();
 				request.setAttribute("mensagem",e.getMessage());
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}
 		else if("logoff".equalsIgnoreCase(action)){

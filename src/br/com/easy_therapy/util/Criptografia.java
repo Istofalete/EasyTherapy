@@ -17,7 +17,7 @@ public class Criptografia {
 	public static void main(String[] args) {
 		
 		try {
-			System.out.println(Criptografia.encriptarSenha("tBLABLAY"));
+			System.out.println(Criptografia.encriptarSenha("2222"));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
