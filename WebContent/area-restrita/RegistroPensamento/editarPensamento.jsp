@@ -5,10 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TerapEasy</title>
-<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
-	href="../../css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="../../css/styles.css">
+	href="../../bootstrap/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="../../bootstrap/css/styles.css">
 </head>
 <body class="container">
 	<div class="jumbotron" style="background-color: #80b3ff;"
